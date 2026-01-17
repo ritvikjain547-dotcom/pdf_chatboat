@@ -141,9 +141,26 @@ def set_bg(image_file="bg.jpg"):
 set_bg("bg.jpg")  
 
 # initializing the model
+# Ensure API key is present (accept GOOGLE_API_KEY or GEMINI_API_KEY)
+api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
+if api_key:
+    api_key = api_key.strip().strip('"').strip("'")
+
+if not api_key:
+    st.error("Gemini API key not found — please set `GOOGLE_API_KEY` or `GEMINI_API_KEY`.")
+    st.markdown(
+        """
+        **How to set the key:**
+        - Locally: add to `.env` (no surrounding quotes) e.g. `GOOGLE_API_KEY=ya29...`
+        - Streamlit Cloud: go to *Manage app → Settings → Secrets* and add `GOOGLE_API_KEY`.
+        - As a fallback (less secure): export `GOOGLE_API_KEY` in the environment or pass `api_key` when constructing `GoogleGenerativeAI`.
+        """
+    )
+    st.stop()
+
 try:
-    model = GoogleGenerativeAI(model="gemini-2.5-flash")
-    embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
+    model = GoogleGenerativeAI(model="gemini-2.5-flash", api_key=api_key)
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004", api_key=api_key)
 except Exception as e:
     import traceback
     tb = traceback.format_exc()
