@@ -268,8 +268,7 @@ PDF Text:
 
             prompt = PromptTemplate(
                 template="""
-You are a helpful assistant. Answer ONLY using the given context.
-If answer is not in context say: "Not found in PDF"
+You are a helpful assistant. Answer using the given context.
 
 Context:
 {context}
