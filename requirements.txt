@@ -1,5 +1,5 @@
-langchain
-langchain-core
+langchain==1.2.6
+langchain-core==1.2.7
 
 # OpenAI Integration
 langchain-openai
@@ -9,7 +9,7 @@ openai
 langchain-anthropic
 
 # Google Gemini (PaLM) Integration
-langchain-google-genai
+langchain-google-genai==4.2.0
 google-generativeai
 
 # Hugging Face Integration
@@ -25,7 +25,7 @@ numpy
 scikit-learn
 
 # LangChain community modules used by project.py
-langchain-community
+langchain-community==0.4.1
 langchain-text-splitters
 # FAISS (CPU) for vectorstore
 faiss-cpu
