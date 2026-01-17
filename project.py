@@ -141,8 +141,16 @@ def set_bg(image_file="bg.jpg"):
 set_bg("bg.jpg")  
 
 # initializing the model
-model = GoogleGenerativeAI(model="gemini-2.5-flash")
-embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
+try:
+    model = GoogleGenerativeAI(model="gemini-2.5-flash")
+    embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
+except Exception as e:
+    import traceback
+    tb = traceback.format_exc()
+    st.error("Model initialization failed — see traceback below.")
+    st.text_area("Model init traceback", tb, height=300)
+    print(tb)
+    st.stop()
 
 # fixing the parameter
 TOP_K = 4
