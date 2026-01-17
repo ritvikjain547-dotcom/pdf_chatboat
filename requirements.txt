@@ -23,3 +23,9 @@ python-dotenv
 # Machine Learning Utilities
 numpy
 scikit-learn
+
+# LangChain community modules used by project.py
+langchain-community
+langchain-text-splitters
+# FAISS (CPU) for vectorstore
+faiss-cpu
